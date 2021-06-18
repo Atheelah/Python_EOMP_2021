@@ -85,7 +85,19 @@ def check():
 
 # BUTTON
 playBTN = Button(root, text="Lets Play!", command=check, bg="salmon", borderwidth="3", width=20)
-playBTN.place(x=150, y=400)
+playBTN.place(x=50, y=400)
+
+
+def terminate():
+    msg = messagebox.askquestion(message="Would you like to exit?")
+    if msg == "yes":
+        root.destroy()
+    elif msg == "no":
+        messagebox.showinfo(message="Returning to the screen")
+
+
+exitBTN = Button(root, text="Exit", command=terminate, bg="salmon", borderwidth="3", width=20)
+exitBTN.place(x=350, y=400)
 
 root.mainloop()
 

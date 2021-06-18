@@ -38,9 +38,9 @@ def clear():
     answerEnt.delete(0, END)
 
 
-convertBTN = Button(currency, text="Lets Convert!", font=("Consolas 15 bold"), bg="salmon", borderwidth="5", command=conversion)
+convertBTN = Button(currency, text="Lets Convert!", font=("Consolas 10 bold"), bg="salmon", borderwidth="5", command=conversion)
 convertBTN.place(x=5, y=220)
-convertBTN = Button(currency, text="CLear Entries", font=("Consolas 15 bold"), bg="salmon", borderwidth="5", command=clear)
+convertBTN = Button(currency, text="CLear Entries", font=("Consolas 10 bold"), bg="salmon", borderwidth="5", command=clear)
 convertBTN.place(x=300, y=220)
 border1 = Label(currency, text="************************************************************************************", bg="grey", fg="salmon")
 border1.place(y=300)
