@@ -14,7 +14,7 @@ root.resizable(height=False, width=False)
 # SETTING THE BACKGROUND COLOR
 root.config(bg='grey')
 
-user_numbers = LabelFrame(root, text="Enter Your Numbers :", width=700, height=200, fg="salmon",
+user_numbers = LabelFrame(root, text="Enter Your Numbers :", width=700, height=200,
                           font=("Consolas 20 bold underline"))
 user_numbers.place(x=25, y=40)
 box1 = Spinbox(user_numbers, from_=0, to=49, width=2, font=("Consolas 35 bold"))
@@ -130,7 +130,7 @@ playBtn = Button(root, text="Clear Entries", borderwidth="3", bg="salmon", width
 playBtn.place(x=570, y=255)
 
 # ENTRY BOXES FOR THE RANDOM SELECTION OF NUMBERS
-winning_numbers = Label(root, text="The Winning Numbers Are :", fg="salmon", font=("Consolas 20 bold underline"))
+winning_numbers = Label(root, text="The Winning Numbers Are :", font=("Consolas 20 bold underline"))
 winning_numbers.place(x=50, y=350)
 WinBox1 = Entry(root, width=2, font=("Consolas 40 bold"))
 WinBox1.place(x=50, y=450)
@@ -162,7 +162,9 @@ def prizes():
     prize = {6: "R10, 000 000.00", 5: "R8,584.00", 4: "R2,384,00", 3: "R100.50", 2: "R20.00", 1: "R0", 0: "R0"}
     my_key = len(result)
     x = prize.get(my_key)
-    reserve.config(text='Your Prize is : {}'.format(x))
+    reserve.config(text='Your Prize is: {}'.format(x))
+    with open("login.txt", "a") as file:
+        file.write("Winnings: {} \n".format(x))
     if x != "R0":
         playsound("Sound effect - Win (mp3cut.net).mp3")
 
@@ -170,7 +172,7 @@ def prizes():
         playsound("Fail Sound Effect (mp3cut.net).mp3")
 
 
-reserve = Label(root, text="", bg="salmon", font=("Consolas 20 bold"))
+reserve = Label(root, text="", font=("Consolas 20 bold"))
 reserve.place(x=50, y=600)
 
 claimBtn = Button(root, text="Check Your Winnings", borderwidth="3", bg="salmon", font=("Consolas 12 bold"),

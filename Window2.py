@@ -70,7 +70,7 @@ def check():
         elif id_check() >= 18:
             messagebox.showinfo(message="Lets try and win the big one!")
             w = open("login.txt", "a+")
-            w.write(nameEnt.get() + " " + " " + emailEnt.get() + " " + " " + idEnt.get() + " " + " " "Logged Into Game "
+            w.write("Name : " + nameEnt.get() + "\n" + "Email : " + emailEnt.get() + "\n" + "ID : " + idEnt.get() + "\n" + "Logged Into Game "
                                                                                                  "At :" + str(now) +
                     "\n")
             w.close()

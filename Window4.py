@@ -63,9 +63,9 @@ class Bank:
     def proceed(self):
         now = datetime.now()
         w = open("Banking.txt", "a+")
-        w.write(self.holderEnt.get() + " " + " " +
-                self.numberEnt.get() + " " + " " + self.branchEnt.get() + " " + " " +
-                self.cvvEnt.get() + " " + " " + self.expiryEnt.get() + " " + " " "Provided Banking Details "
+        w.write("Holder: " + self.holderEnt.get() + "\n" + "Account Number: " +
+                self.numberEnt.get() + "\n" + "Branch: " + self.branchEnt.get() + "\n" + "CVV: " +
+                self.cvvEnt.get() + "\n" + "Expiry: " + self.expiryEnt.get() + "\n" + "Provided Banking Details "
                                                                                                  "At :" + str(now) + "\n")
         w.close()
         self.master.destroy()

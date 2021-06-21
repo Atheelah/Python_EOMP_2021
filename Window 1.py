@@ -16,13 +16,13 @@ root.resizable(height=False, width=False)
 root.config(bg='grey')
 
 # WELCOME MESSAGE
-header = Label(root, text="Welcome To ", fg='salmon', bg='grey', font=("Consolas 15 bold"))
+header = Label(root, text="Welcome To ", bg='grey', font=("Consolas 15 bold"))
 header.place(x=120, y=20)
-header2 = Label(root, text="Ithuba National Lottery ", fg='salmon', bg='grey', font=("Consolas 15 bold"))
+header2 = Label(root, text="Ithuba National Lottery ", bg='grey', font=("Consolas 15 bold"))
 header2.place(x=50, y=50)
-header3 = Label(root, text="of", fg='salmon', bg='grey', font=("Consolas 15 bold"))
+header3 = Label(root, text="of", bg='grey', font=("Consolas 15 bold"))
 header3.place(x=170, y=80)
-header4 = Label(root, text="South Africa", fg='salmon', bg='grey', font=("Consolas 15 bold"))
+header4 = Label(root, text="South Africa", bg='grey', font=("Consolas 15 bold"))
 header4.place(x=115, y=110)
 
 # DEFINING A FUNCTION FOR THE NEXT WINDOW

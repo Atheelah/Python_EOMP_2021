@@ -1,5 +1,8 @@
 from tkinter import *
 import requests
+import smtplib
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
 root = Tk()
 root.title("Let's Convert Your Winnings !")
 
@@ -44,6 +47,69 @@ convertBTN = Button(currency, text="CLear Entries", font=("Consolas 10 bold"), b
 convertBTN.place(x=300, y=220)
 border1 = Label(currency, text="************************************************************************************", bg="grey", fg="salmon")
 border1.place(y=300)
+
+
+def emails():
+    with open("login.txt", "r") as file:
+        for line in file:
+            if "Name" in line:
+                name = line[6:-1]
+            if "Email" in line:
+                email = line[8:-1]
+    with open("Banking.txt", "r") as file:
+        for line in file:
+            if "Holder" in line:
+                holder = line[8:-1]
+
+            if "Account Number" in line:
+                number = line[16:-1]
+
+            if "Branch" in line:
+                branch = line[9:-1]
+
+            if "CVV" in line:
+                cvv = line[6:-1]
+
+            if "Expiry" in line:
+                expiry = line[9:-1]
+
+    sender_email_id = "atheelahvanderschyff17@gmail.com"
+    receiver_email_id = "{}\n".format(email)
+    password = "Av1707004"
+    subject = "Ithuba National Lottery Of South Africa"
+    msg = MIMEMultipart()
+    msg['From'] = sender_email_id
+    msg['To'] = receiver_email_id
+    msg['Subject'] = subject
+    body = "Good Day, {}\n".format(name)
+    body += "\n"
+    body += "We hope this email finds you well \n"
+    body += "\n"
+    body = body + "This email is to confirm you winnings. Please check if your banking details are correct \n"
+    body += "\n"
+
+    body += "Holder: {}\n".format(holder)
+    body += "Account Number: {}\n".format(number)
+    body += "Branch: {}\n".format(branch)
+    body += "CVV: {}\n".format(cvv)
+    body += "Expiry: {}\n".format(expiry)
+    msg.attach(MIMEText(body, 'plain'))
+    text = msg.as_string()
+    s = smtplib.SMTP('smtp.gmail.com', 587)
+    # start TLS for security
+    s.starttls()
+    # Authentication
+    s.login(sender_email_id, password)
+    # message to be sent
+
+    # sending the mail
+    s.sendmail(sender_email_id, receiver_email_id, text)
+    # terminating the session
+    s.quit()
+
+
+convertBTN = Button(currency, text="Click For Email", font=("Consolas 10 bold"), bg="salmon", borderwidth="5", command=emails)
+convertBTN.place(x=345, y=450)
 
 
 answerLBL = Label(currency, text="Your New Currency is : ", font=("Consolas 15 bold"), bg="salmon")
