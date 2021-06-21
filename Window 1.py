@@ -25,10 +25,12 @@ header3.place(x=170, y=80)
 header4 = Label(root, text="South Africa", bg='grey', font=("Consolas 15 bold"))
 header4.place(x=115, y=110)
 
+
 # DEFINING A FUNCTION FOR THE NEXT WINDOW
 def nextscreen():
     root.destroy()
     import Window2
+
 
 # CREATING A BUTTON
 btn = Button(root, text="Lets Check If You're Old Enough", bg="salmon", borderwidth="3", command=nextscreen)
