@@ -28,9 +28,9 @@ cashEnt.place(x=30, y=160)
 
 
 def conversion():
-    url = "https://v6.exchangerate-api.com/v6/89dcd9e8cc7777ded2575ce1/latest/ZAR"
+    url = "https://v6.exchangerate-api.com/v6/89dcd9e8cc7777ded2575ce1/latest/ZAR"  # THE LINK TO A CURRENCY CONVERTER API
     information = requests.get(url).json()
-    output = int(cashEnt.get()) * information["conversion_rates"][currencyEnt.get()]
+    output = int(cashEnt.get()) * information["conversion_rates"][currencyEnt.get()]  # TAKES THE AMOUNT ON THE CONVERTER AND * IT BY YOUR WINNINGS
     print(output)
     answerEnt.insert(0, "{} ({})".format(output, currencyEnt.get()))
 
@@ -49,11 +49,12 @@ border1 = Label(currency, text="************************************************
 border1.place(y=300)
 
 
+# DEFINING A FUNCTION FOR MY EMAILS
 def emails():
     with open("login.txt", "r") as file:
         for line in file:
             if "Name" in line:
-                name = line[6:-1]
+                name = line[6:-1]  # STATING FROM WHERE IT MUST BE PRINTED USING INDEXES
             if "Email" in line:
                 email = line[8:-1]
     with open("Banking.txt", "r") as file:
@@ -72,7 +73,7 @@ def emails():
 
             if "Expiry" in line:
                 expiry = line[9:-1]
-
+# CREATING MY EMAIL
     sender_email_id = "atheelahvanderschyff17@gmail.com"
     receiver_email_id = "{}\n".format(email)
     password = "Av1707004"
@@ -108,6 +109,7 @@ def emails():
     s.quit()
 
 
+# CLICK FOR EMAIL BUTTON
 convertBTN = Button(currency, text="Click For Email", font=("Consolas 10 bold"), bg="salmon", borderwidth="5", command=emails)
 convertBTN.place(x=345, y=450)
 

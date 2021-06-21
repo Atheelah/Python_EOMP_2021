@@ -1,3 +1,4 @@
+# INSTALLING  THE MODULES THAT ARE NEEDED
 from tkinter import *
 from tkinter import messagebox
 from datetime import date, datetime, timedelta
@@ -6,7 +7,7 @@ from playsound import playsound
 import rsaidnumber
 from dateutil.relativedelta import relativedelta
 
-
+# CREATING MY OWN EXCEPTION
 class InvalidEmail(Exception):
     pass
 
@@ -35,7 +36,7 @@ idLBL.place(x=5, y=100)
 idEnt = Entry(root)
 idEnt.place(x=250, y=100)
 
-
+# DEFINING A FUNCTION FOR ID. CHECKS HOW OLD THE PERSON IS BY THE ID NUMBER
 def id_check():
     my_id = rsaidnumber.parse(idEnt.get())
     dob = my_id.date_of_birth
@@ -43,44 +44,39 @@ def id_check():
     return age.years
 
 
-# EMAIL ADDRESS
+# EMAIL ADDRESS LABEL
 emailLBL = Label(root, text="Email Address :", bg='grey', font=("Consolas 15 bold"))
 emailLBL.place(x=5, y=200)
 emailEnt = Entry(root)
 emailEnt.place(x=250, y=200)
 
-# YOUR AGE
-# ageLBL = Label(root, text="Enter Your Age :", bg='grey', font=("Consolas 15 bold"))
-# ageLBL.place(x=5, y=300)
-# ageEnt = Entry(root)
-# ageEnt.place(x=250, y=300)
-
-
+# DEFINING A FUNCTION TO CHECK IF THE PERSON IS OLD ENOUGH TO PLAY
 def check():
-    try:
+    try:  # GETTING THE ID
         print(type(id_check()))
         rsaidnumber.parse(idEnt.get())
 
-        if not validate_email(emailEnt.get()):
+        if not validate_email(emailEnt.get()):  # VALIDATING THE INPUT OF THE EMAIL
             raise InvalidEmail
 
-        elif id_check() < 18:
-            messagebox.showerror(message="Try again when you 18 or older")
+        elif id_check() < 18:  # CHECKS IF THE PLAYER IS YOUNGER THAN 18, SHOWS ERROR MESSAGE
+            messagebox.showerror(message="Access Denied. Try again when you 18 or older")
 
-        elif id_check() >= 18:
-            messagebox.showinfo(message="Lets try and win the big one!")
-            w = open("login.txt", "a+")
+        elif id_check() >= 18:  # CHECKS IF THE PLAYER IS 18 OR OLDER, ACCESS INTO THE GAME IS GRANTED
+            messagebox.showinfo(message="Access Granted! Lets play")
+
+            w = open("login.txt", "a+")  # THE INFORMATION IS RECORDED AND GETS STORED IN A TXT FILE.
             w.write("Name : " + nameEnt.get() + "\n" + "Email : " + emailEnt.get() + "\n" + "ID : " + idEnt.get() + "\n" + "Logged Into Game "
-                                                                                                 "At :" + str(now) +
+                                                                                            "At :" + str(now) +
                     "\n")
             w.close()
-            playsound("sound1.mp3")
+            playsound("sound1.mp3")  # ONCE ACCESS IS GRANTED A SOUND GETS PLAYED
             root.destroy()
-            import Window3
+            import Window3  # WINDOW 3 GETS IMPORTED
     except ValueError:
-        messagebox.showerror(message="Enter Valid RSA ID")
+        messagebox.showerror(message="Enter Valid RSA ID")  # HAPPENS WHEN USER INPUTS A WRONG ID
     except InvalidEmail:
-        messagebox.showerror(message="Please enter valid email")
+        messagebox.showerror(message="Please enter valid email")  # HAPPENS WHEN USER INPUTS A WRONG EMAIL
 
 
 # BUTTON
@@ -88,6 +84,7 @@ playBTN = Button(root, text="Lets Play!", command=check, bg="salmon", borderwidt
 playBTN.place(x=50, y=400)
 
 
+# DEFINING AN EXIT BUTTON
 def terminate():
     msg = messagebox.askquestion(message="Would you like to exit?")
     if msg == "yes":
